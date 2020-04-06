@@ -1,11 +1,8 @@
 import React from 'react';
-import {
-  getLanguageIcon,
-  languagesNames,
-} from '../common/languagesUtilityFunctions';
+import { languagesNames } from '../common/languagesUtilityFunctions';
 import LanguagesBoardItem from './LanguagesBoardItem';
 import { Link } from 'react-router-dom';
-import { ReactComponent as CheckReview } from '../SVG/undraw_review_fkgn.svg';
+import { ReactComponent as CheckReview } from '../SVG/review.svg';
 
 function LanguagesBoardHeader() {
   return (
@@ -36,13 +33,7 @@ export default function LanguagesBoard() {
       <LanguagesBoardHeader />
       <ul className='board-list'>
         {languagesNames.map((languageName, index) => {
-          return (
-            <LanguagesBoardItem
-              languageName={languageName}
-              languageIcon={getLanguageIcon(languageName)}
-              key={index}
-            />
-          );
+          return <LanguagesBoardItem languageName={languageName} key={index} />;
         })}
       </ul>
     </>

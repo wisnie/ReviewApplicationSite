@@ -12,14 +12,9 @@ export default function LoadingAnimation() {
   return isAnimated ? (
     <>
       <div className='animation'>
-        <div className='animation-point'></div>
-        <div className='animation-point'></div>
-        <div className='animation-point'></div>
-        <div className='animation-point'></div>
-        <div className='animation-point'></div>
-        <div className='animation-point'></div>
-        <div className='animation-point'></div>
-        <div className='animation-point'></div>
+        {Array.from({ length: 8 }, (_) => (
+          <div className='animation-point'></div>
+        ))}
       </div>
       <p>Sending data to the server.</p>
     </>

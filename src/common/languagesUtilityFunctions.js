@@ -17,10 +17,10 @@ import { ReactComponent as JS } from '../SVG/js.svg';
 import { ReactComponent as TS } from '../SVG/ts.svg';
 import { ReactComponent as PHP } from '../SVG/php.svg';
 
-import { ReactComponent as Moonlight } from '../SVG/undraw_moonlight_5ksn.svg';
-import { ReactComponent as Space } from '../SVG/undraw_Outer_space_drqu.svg';
-import { ReactComponent as Timeline } from '../SVG/undraw_timeline_9u4u.svg';
-import { ReactComponent as Charts } from '../SVG/undraw_statistic_chart_38b6.svg';
+import { ReactComponent as Moonlight } from '../SVG/moonlight.svg';
+import { ReactComponent as Space } from '../SVG/outer-space.svg';
+import { ReactComponent as Timeline } from '../SVG/timeline.svg';
+import { ReactComponent as Charts } from '../SVG/statistic-chart.svg';
 
 import image1 from '../images/image1.jpg';
 import image2 from '../images/image2.jpg';

@@ -10,12 +10,12 @@ import { FORM_STEPS } from '../common/formSteps';
 import { languagesNames } from '../common/languagesUtilityFunctions';
 import { Redirect, Link } from 'react-router-dom';
 
-import { ReactComponent as Dreamer } from '../SVG/undraw_dreamer_gxxi.svg';
-import { ReactComponent as Survey } from '../SVG/undraw_customer_survey_f9ur.svg';
-import { ReactComponent as Files } from '../SVG/undraw_sync_files_xb3r.svg';
-import { ReactComponent as House } from '../SVG/undraw_for_sale_viax.svg';
-import { ReactComponent as Environment } from '../SVG/undraw_environmental_study_skau.svg';
-import { ReactComponent as ServerDownload } from '../SVG/undraw_server_down_s4lk.svg';
+import { ReactComponent as Dreamer } from '../SVG/dreamer.svg';
+import { ReactComponent as Survey } from '../SVG/survey.svg';
+import { ReactComponent as Files } from '../SVG/sync-files.svg';
+import { ReactComponent as House } from '../SVG/for-sale.svg';
+import { ReactComponent as Environment } from '../SVG/study.svg';
+import { ReactComponent as ServerDownload } from '../SVG/server-down.svg';
 import { ReactComponent as Account } from '../SVG/account-circle.svg';
 import { ReactComponent as Bell } from '../SVG/bell-circle.svg';
 
@@ -28,9 +28,19 @@ function ReviewStep({ children, picture }) {
   );
 }
 
+const SET_PROPERTY_VALUE = 'SET_PROPERTY_VALUE';
+
+function setPropertyValue(property, value) {
+  return {
+    type: SET_PROPERTY_VALUE,
+    property: property,
+    value: value,
+  };
+}
+
 function reducer(state, action) {
   switch (action.type) {
-    case 'set':
+    case SET_PROPERTY_VALUE:
       return { ...state, [action.property]: action.value };
     default:
       throw new Error();
@@ -48,22 +58,37 @@ export default function ReviewForm() {
     useCasesValue: '',
   });
 
+  const setStarValue = (value) =>
+    dispatch(setPropertyValue('starValue', value));
+  const setDropdownValue = (value) =>
+    dispatch(setPropertyValue('dropdownValue', value));
+  const setUsernameValue = (value) =>
+    dispatch(setPropertyValue('usernameValue', value));
+  const setEmailValue = (value) =>
+    dispatch(setPropertyValue('emailValue', value));
+  const setUseCasesValue = (value) =>
+    dispatch(setPropertyValue('useCasesValue', value));
+  const setAdvantagesValue = (value) =>
+    dispatch(setPropertyValue('advantagesValue', value));
+  const setDisadvantagesValue = (value) =>
+    dispatch(setPropertyValue('disadvantagesValue', value));
+
   const [formStep, setFormStep] = useState(1);
-  const [isRedirect, setIsRedirect] = useState(false);
+  const [shouldRedirect, setShouldRedirect] = useState(false);
 
   function handleClick() {
     if (formStep > 1) {
       return setFormStep((prevState) => prevState - 1);
     }
 
-    setIsRedirect(true);
+    setShouldRedirect(true);
   }
 
   function handleSubmit(event) {
     event.preventDefault();
 
     if (formStep === FORM_STEPS.length) {
-      setIsRedirect(true);
+      setShouldRedirect(true);
     }
 
     setFormStep((prevState) => prevState + 1);
@@ -71,7 +96,7 @@ export default function ReviewForm() {
 
   return (
     <div className='form-container'>
-      {isRedirect && <Redirect to='' />}
+      {shouldRedirect && <Redirect to='' />}
 
       <form
         onSubmit={handleSubmit}
@@ -90,13 +115,7 @@ export default function ReviewForm() {
             <ReviewInput
               value={state.usernameValue}
               labelName='username'
-              onChange={(value) =>
-                dispatch({
-                  type: 'set',
-                  property: 'usernameValue',
-                  value: value,
-                })
-              }
+              onChange={setUsernameValue}
               InputIcon={Account}
             />
 
@@ -104,21 +123,13 @@ export default function ReviewForm() {
               labelName='e-mail'
               InputIcon={Bell}
               value={state.emailValue}
-              onChange={(value) =>
-                dispatch({ type: 'set', property: 'emailValue', value: value })
-              }
+              onChange={setEmailValue}
             />
 
             <CustomDropdown
               dropownItems={languagesNames}
               dropdownValue={state.dropdownValue}
-              setDropdownValue={(value) =>
-                dispatch({
-                  type: 'set',
-                  property: 'dropdownValue',
-                  value: value,
-                })
-              }
+              setDropdownValue={setDropdownValue}
             />
           </ReviewStep>
         )}
@@ -130,13 +141,7 @@ export default function ReviewForm() {
               noun='advantages'
               languageName={state.dropdownValue}
               value={state.advantagesValue}
-              onChange={(value) =>
-                dispatch({
-                  type: 'set',
-                  property: 'advantagesValue',
-                  value: value,
-                })
-              }
+              onChange={setAdvantagesValue}
             />
           </ReviewStep>
         )}
@@ -148,13 +153,7 @@ export default function ReviewForm() {
               noun='disadvantages'
               languageName={state.dropdownValue}
               value={state.disadvantagesValue}
-              onChange={(value) =>
-                dispatch({
-                  type: 'set',
-                  property: 'disadvantagesValue',
-                  value: value,
-                })
-              }
+              onChange={setDisadvantagesValue}
             />
           </ReviewStep>
         )}
@@ -166,13 +165,7 @@ export default function ReviewForm() {
               noun='use cases'
               languageName={state.dropdownValue}
               value={state.useCasesValue}
-              onChange={(value) =>
-                dispatch({
-                  type: 'set',
-                  property: 'useCasesValue',
-                  value: value,
-                })
-              }
+              onChange={setUseCasesValue}
             />
           </ReviewStep>
         )}
@@ -188,12 +181,7 @@ export default function ReviewForm() {
               </span>{' '}
               programming language. Think wisely about your choice.
             </p>
-            <RatingBar
-              onClick={(value) =>
-                dispatch({ type: 'set', property: 'starValue', value: value })
-              }
-              starValue={state.starValue}
-            />
+            <RatingBar onClick={setStarValue} starValue={state.starValue} />
           </ReviewStep>
         )}
 
