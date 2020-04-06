@@ -1,0 +1,82 @@
+.language-header {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  background-color: $font-dark;
+
+  @include respond-to('small') {
+    flex-direction: column;
+    padding: 1em 0;
+  }
+
+  @include respond-to('medium') {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1em 15%;
+  }
+}
+
+.language-title {
+  font-size: 1.25em;
+
+  @include respond-to('small') {
+    text-align: center;
+  }
+}
+
+.link {
+  text-decoration: none;
+  color: $font-light;
+
+  &--style-button {
+    padding: 1em;
+    border: 1px solid $font-light;
+    border-radius: 2em;
+
+    @include respond-to('small') {
+      padding: 0.75em;
+    }
+  }
+}
+
+.navigation {
+  align-self: stretch;
+}
+
+.navigation-list {
+  display: flex;
+  align-items: center;
+  list-style: none;
+
+  @include respond-to('small') {
+    width: 100%;
+    justify-content: center;
+    border-top: 1px solid $font-grey;
+    border-bottom: 1px solid $font-grey;
+    margin: 1.5em 0;
+  }
+
+  @include respond-to('medium') {
+    border: none;
+    width: auto;
+    margin: 0;
+  }
+}
+
+.navigation-item {
+  padding: 1em;
+
+  @include respond-to('small') {
+  }
+}
+
+.navigation-link {
+  display: inline-block;
+  color: $font-light;
+  text-align: center;
+  text-decoration: none;
+
+  &::first-letter {
+    text-transform: uppercase;
+  }
+}

@@ -1,0 +1,8 @@
+.language-name {
+  text-transform: uppercase;
+  font-family: 'Poppins', sans-serif;
+
+  &--color-yellow {
+    color: $yellow;
+  }
+}

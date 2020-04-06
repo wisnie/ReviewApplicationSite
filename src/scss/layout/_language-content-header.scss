@@ -1,0 +1,116 @@
+.language-content-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center;
+
+  @include respond-to('small') {
+    background-size: cover;
+    height: 80vh;
+  }
+
+  @include respond-to('medium') {
+    height: 100vh;
+  }
+}
+
+.content-header__wrapper {
+  max-width: 600px;
+  padding: 1.5em;
+  text-align: center;
+
+  @include respond-to('small') {
+    background-color: $white;
+    opacity: 0.75;
+  }
+
+  @include respond-to('medium') {
+    opacity: 0.85;
+    background-color: $black;
+    box-shadow: 0 10px 35px -20px $white;
+  }
+}
+
+.content-header__title {
+  @include respond-to('small') {
+    color: $font-dark;
+    font-size: 2.5em;
+  }
+
+  @include respond-to('medium') {
+    color: $font-light;
+    font-size: 3.5em;
+  }
+}
+
+.content-header__short-desc {
+  @include respond-to('small') {
+    color: $font-dark-grey;
+    font-size: 1.3em;
+  }
+
+  @include respond-to('medium') {
+    color: $font-light;
+    font-size: 1.45em;
+  }
+}
+
+.content-header__links-container {
+  display: flex;
+  justify-content: space-between;
+  z-index: 5;
+  border-top: 1px solid $white;
+  margin-top: 1.5em;
+  padding: 1em;
+  background-color: transparent;
+
+  @include respond-to('small') {
+    flex-direction: column;
+  }
+
+  @include respond-to('medium') {
+    flex-direction: row;
+  }
+}
+
+.content-header__link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5em;
+  margin: 0.25em;
+  border-radius: 3em;
+  text-decoration: none;
+
+  &--theme-border-outline {
+    color: $font-dark-grey;
+
+    @include respond-to('medium') {
+      color: $font-dark-grey;
+      font-size: 1.3em;
+    }
+  }
+
+  &--theme-background-fill {
+    background-color: $white;
+    color: $font-dark;
+  }
+
+  &:hover,
+  &:focus {
+    background-color: $white;
+    color: $font-dark-grey;
+  }
+
+  @include respond-to('small') {
+    border: 2px solid $black;
+  }
+
+  @include respond-to('medium') {
+    margin: 0.5em;
+    border: 2px solid $white;
+  }
+}
