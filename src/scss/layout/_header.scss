@@ -1,0 +1,95 @@
+.header {
+  display: flex;
+  width: 100%;
+  padding: 2em 10%;
+  overflow: hidden;
+  background-color: $primary;
+
+  @include respond-to('small') {
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+  }
+
+  @include respond-to('medium') {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.header__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  @include respond-to('medium') {
+    width: 75%;
+  }
+
+  @include respond-to('medium') {
+    width: 50%;
+  }
+
+  @include respond-to('large') {
+    width: 35%;
+  }
+}
+
+.header-text-section {
+  margin: 1em;
+}
+
+.header__title {
+  color: $font-light;
+  text-align: center;
+
+  @include respond-to('small') {
+    font-size: 1.55em;
+    margin: 0.25em;
+  }
+
+  @include respond-to('medium') {
+    font-size: 1.85em;
+    margin: 0.5em;
+  }
+
+  @include respond-to('large') {
+    font-size: 2.5em;
+  }
+}
+
+.header__description {
+  color: $font-whitish;
+  text-align: center;
+
+  @include respond-to('small') {
+    font-size: 1em;
+  }
+
+  @include respond-to('medium') {
+    font-size: 1.2em;
+  }
+
+  @include respond-to('large') {
+    font-size: 1.5em;
+  }
+}
+
+.header__picture {
+  flex-grow: 1;
+  flex-basis: 0;
+
+  @include respond-to('small') {
+    display: none;
+  }
+
+  @include respond-to('medium') {
+    display: block;
+  }
+
+  & svg {
+    max-width: 100%;
+    height: auto;
+  }
+}

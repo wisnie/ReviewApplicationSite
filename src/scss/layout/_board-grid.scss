@@ -1,0 +1,100 @@
+.board-list {
+  display: grid;
+  width: 100%;
+  padding: 2em 10%;
+  list-style: none;
+
+  @include respond-to('small') {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    grid-gap: 1.25em;
+    gap: 1.25em;
+  }
+
+  @include respond-to('medium') {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-gap: 1.75em;
+    gap: 1.75em;
+  }
+
+  @include respond-to('large') {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    grid-gap: 2em;
+    gap: 2em;
+  }
+}
+
+.board-list__item {
+  @include grid-colors;
+
+  box-shadow: 0px 0px 10px 5px $font-grey;
+  background-color: $white;
+}
+
+.board-list__link {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  padding: 1.25em;
+  overflow: hidden;
+  cursor: pointer;
+
+  &::after {
+    @include transition;
+
+    content: '';
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    bottom: 100%;
+    left: 100%;
+    background-color: $primary;
+  }
+
+  &:hover::after,
+  &:focus::after {
+    transform: translate(-100%, 100%);
+  }
+
+  svg {
+    position: relative;
+
+    path {
+      @include transition;
+    }
+  }
+
+  &:hover svg,
+  &:focus svg {
+    z-index: 10;
+
+    path {
+      fill: $white;
+    }
+  }
+
+  &:hover .board-list__text,
+  &:focus .board-list__text {
+    color: $font-light;
+    z-index: 10;
+    position: relative;
+  }
+}
+
+.board-list__text {
+  @include transition;
+
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  color: $font-dark;
+  text-transform: uppercase;
+
+  @include respond-to('small') {
+    font-size: 1em;
+  }
+
+  @include respond-to('medium') {
+    font-size: 2em;
+  }
+}

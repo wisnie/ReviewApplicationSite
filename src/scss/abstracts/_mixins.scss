@@ -1,0 +1,45 @@
+@mixin grid-colors {
+  @for $i from 0 through 15 {
+    $color: hsl((0 + (10 * $i)), 75%, 50%);
+
+    &:nth-child(#{$i + 1}) {
+      path {
+        fill: $color;
+      }
+    }
+  }
+}
+
+@mixin timing-function {
+  @for $i from 0 through 8 {
+    &:nth-child(#{$i + 1}) {
+      animation: 1.25s
+        0.25s
+        cubic-bezier(#{1- $i/8}, #{$i/8}, 1, 1)
+        infinite
+        running
+        rotate;
+    }
+  }
+}
+
+@mixin respond-to($size) {
+  $query: map-get($breakpoints, $size);
+
+  @media #{$query} {
+    @content;
+  }
+}
+
+@mixin transition {
+  transition: {
+    duration: 200ms;
+    delay: 50ms;
+    timing-function: ease-out;
+  }
+}
+
+@mixin size($width, $height: $width) {
+  width: $width;
+  height: $height;
+}

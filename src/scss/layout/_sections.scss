@@ -1,0 +1,63 @@
+.sections-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4em 15%;
+
+  @for $i from 1 through 4 {
+    &:nth-child(#{$i}) {
+      $order: $i % 2;
+      background-color: hsl(180 + (30 * $i), 100%, 85%);
+      .section__image {
+        order: $order;
+      }
+    }
+  }
+}
+
+.section__image {
+  width: 50%;
+
+  svg {
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+  @include respond-to('small') {
+    display: none;
+  }
+
+  @include respond-to('medium') {
+    display: block;
+  }
+}
+
+.section__text {
+  @include respond-to('small') {
+    width: 100%;
+  }
+
+  @include respond-to('medium') {
+    width: 55%;
+  }
+
+  @include respond-to('large') {
+    width: 45%;
+  }
+}
+
+.section__title {
+  margin: 0.5em;
+  font-size: 3.5em;
+  font-family: 'Poppins' sans-serif;
+  text-align: center;
+
+  &::first-letter {
+    text-transform: uppercase;
+  }
+}
